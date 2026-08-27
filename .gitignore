@@ -1,0 +1,25 @@
+# Secrets / local data
+data/admin.json
+data/orders.json
+data/public-url.txt
+data/permanent-domain.txt
+PUBLIC-LINKS.txt
+uploads/
+*.log
+
+# Binaries
+cloudflared.exe
+ngrok.exe
+ngrok.zip
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

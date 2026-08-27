@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Geetha Gold Works | Crafted by Hand</title>
+  <meta
+    name="description"
+    content="Geetha Gold Works — handcrafted gold jewellery, custom designs, repairs and restoration."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --gold: #c7a15a;
+      --gold-light: #e3c47c;
+      --cream: #f6f1e7;
+      --dark: #11100e;
+      --dark-2: #1a1815;
+      --text: #eee9df;
+      --muted: #aaa49a;
+      --border: rgba(255,255,255,0.1);
+      --max: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(17, 16, 14, 0.75);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid transparent;
+      transition: 0.3s;
+    }
+
+    header.scrolled {
+      border-color: var(--border);
+      background: rgba(17, 16, 14, 0.95);
+    }
+
+    .nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: #d7d1c7;
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-button {
+      padding: 11px 18px;
+      border: 1px solid var(--gold);
+      color: var(--gold-light) !important;
+    }
+
+    .menu {
+      display: none;
+      background: none;
+      border: 0;
+      color: white;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(10, 9, 7, 0.92) 0%,
+          rgba(10, 9, 7, 0.72) 45%,
+          rgba(10, 9, 7, 0.3) 100%
+        ),
+        url("https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=2200&q=90")
+        center / cover;
+    }
+
+    .hero-content {
+      max-width: 680px;
+      padding-top: 80px;
+    }
+
+    .eyebrow {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 11px;
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(60px, 8vw, 110px);
+      line-height: 0.88;
+      font-weight: 500;
+      letter-spacing: -3px;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 span {
+      color: var(--gold-light);
+      font-style: italic;
+    }
+
+    .hero p {
+      max-width: 530px;
+      color: #cbc5bb;
+      font-size: 16px;
+      font-weight: 300;
+      margin-bottom: 36px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 25px;
+      border: 1px solid var(--gold);
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #16130e;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      color: white;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #aaa49a;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       SECTION
+    ========================= */
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-header {
+      margin-bottom: 50px;
+      max-width: 650px;
+    }
+
+    .section-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 5vw, 68px);
+      line-height: 0.95;
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .section-title span {
+      color: var(--gold-light);
+      font-style: italic;
+    }
+
+    .section-description {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* =========================
+       COLLECTION
+    ========================= */
+
+    .collections {
+      background: var(--cream);
+      color: #211d17;
+    }
+
+    .collections .section-description {
+      color: #756e64;
+    }
+
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .collection-card {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 0;
+      padding: 0;
+      width: 100%;
+      text-align: left;
+      background: none;
+      color: inherit;
+      display: block;
+      font-family: inherit;
+    }
+
+    .collection-card img {
+      height: 100%;
+      transition: transform 0.7s ease;
+    }
+
+    .collection-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .collection-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      background: linear-gradient(
+        transparent 40%,
+        rgba(0,0,0,0.8)
+      );
+      color: white;
+    }
+
+    .collection-overlay h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 38px;
+      font-weight: 500;
+    }
+
+    .collection-overlay p {
+      font-size: 12px;
+      color: #d8d1c7;
+      margin-top: 4px;
+    }
+
+    .folder-toolbar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .folder-toolbar.visible {
+      display: flex;
+    }
+
+    .folder-back {
+      border: 1px solid #c7a15a;
+      color: #211d17;
+      background: transparent;
+      padding: 10px 16px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .folder-toolbar h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 32px;
+      font-weight: 500;
+    }
+
+    /* =========================
+       STORY
+    ========================= */
+
+    .story {
+      background: var(--dark-2);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .story-image {
+      height: 650px;
+      position: relative;
+    }
+
+    .story-image img {
+      height: 100%;
+    }
+
+    .story-image::after {
+      content: "";
+      position: absolute;
+      width: 70%;
+      height: 70%;
+      border: 1px solid rgba(199,161,90,0.45);
+      right: -22px;
+      bottom: -22px;
+      z-index: -1;
+    }
+
+    .story-text .section-header {
+      margin-bottom: 30px;
+    }
+
+    .story-text p {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 15px;
+    }
+
+    .signature {
+      margin-top: 35px;
+      font-family: "Cormorant Garamond", serif;
+      color: var(--gold-light);
+      font-size: 31px;
+      font-style: italic;
+    }
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .services {
+      background: #0d0c0b;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+    .service {
+      min-height: 250px;
+      padding: 35px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: 0.3s;
+    }
+
+    .service:hover {
+      background: #171512;
+    }
+
+    .service-number {
+      color: var(--gold);
+      font-size: 12px;
+      margin-bottom: 55px;
+    }
+
+    .service h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 30px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .service p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================
+       CUSTOM DESIGN
+    ========================= */
+
+    .custom {
+      background:
+        linear-gradient(
+          90deg,
+          rgba(15,14,12,0.97),
+          rgba(15,14,12,0.72)
+        ),
+        url("https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=2200&q=90")
+        center / cover;
+    }
+
+    .custom-content {
+      max-width: 650px;
+    }
+
+    /* =========================
+       TESTIMONIALS
+    ========================= */
+
+    .testimonials {
+      background: var(--cream);
+      color: #201d18;
+    }
+
+    .testimonials .section-description {
+      color: #756e64;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 38px;
+      min-height: 280px;
+    }
+
+    .stars {
+      color: var(--gold);
+      letter-spacing: 4px;
+      margin-bottom: 30px;
+    }
+
+    .testimonial p {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      line-height: 1.25;
+      margin-bottom: 25px;
+    }
+
+    .testimonial strong {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+      background: var(--dark-2);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 80px;
+    }
+
+    .contact-details {
+      margin-top: 40px;
+    }
+
+    .contact-item {
+      margin-bottom: 28px;
+    }
+
+    .contact-item small {
+      color: var(--gold);
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      margin-bottom: 6px;
+    }
+
+    .contact-item a,
+    .contact-item p {
+      color: #d7d1c7;
+      font-size: 15px;
+    }
+
+    form {
+      display: grid;
+      gap: 15px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: white;
+      padding: 16px;
+      outline: none;
+      font-family: inherit;
+      transition: 0.3s;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--gold);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #090807;
+      border-top: 1px solid var(--border);
+      padding: 35px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-inner p {
+      color: #777168;
+      font-size: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      font-size: 12px;
+      color: #aaa49a;
+    }
+
+    /* =========================
+       WHATSAPP
+    ========================= */
+
+    .whatsapp {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      font-weight: bold;
+      font-size: 22px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      transition: 0.3s;
+    }
+
+    .whatsapp:hover {
+      transform: scale(1.08);
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .nav-links {
+        position: fixed;
+        top: 78px;
+        left: 0;
+        right: 0;
+        background: rgba(17,16,14,0.98);
+        flex-direction: column;
+        padding: 30px;
+        gap: 22px;
+        transform: translateY(-150%);
+        transition: 0.3s;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+      }
+
+      .menu {
+        display: block;
+      }
+
+      .collection-grid,
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .collection-card {
+        height: 450px;
+      }
+
+      .story-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .story-image {
+        height: 500px;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: min(100% - 28px, var(--max));
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .hero h1 {
+        font-size: 64px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service {
+        min-height: auto;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .story-image {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <header id="header">
+    <div class="container nav">
+
+      <a href="#" class="logo">
+        Geetha Gold <span>Works</span>
+      </a>
+
+      <button class="menu" id="menuButton" aria-label="Open menu">
+        ☰
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact" class="nav-button">Enquire</a></li>
+      </ul>
+
+    </div>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <main>
+
+    <section class="hero" id="home">
+
+      <div class="container">
+
+        <div class="hero-content reveal">
+
+          <div class="eyebrow">
+            Master Goldsmiths · Since 1987
+          </div>
+
+          <h1>
+            Crafted<br>
+            <span>by Hand.</span>
+          </h1>
+
+          <p>
+            Timeless gold jewellery, handcrafted with patience,
+            precision and generations of expertise.
+          </p>
+
+          <div class="buttons">
+            <a href="#collections" class="btn btn-primary">
+              Explore Collection
+            </a>
+
+            <a href="#contact" class="btn btn-outline">
+              Custom Design
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="scroll">
+        Scroll to discover
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         COLLECTIONS
+    ========================== -->
+
+    <section class="collections" id="collections">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="eyebrow">
+            Our Collection
+          </div>
+
+          <h2 class="section-title">
+            Made for <span>generations.</span>
+          </h2>
+
+          <p class="section-description">
+            Discover carefully crafted pieces designed to become
+            part of your story.
+          </p>
+
+        </div>
+
+        <div class="folder-toolbar" id="folderToolbar">
+          <button class="folder-back" type="button" id="folderBack">Back to folders</button>
+          <h3 id="folderHeading"></h3>
+        </div>
+
+        <div class="collection-grid" id="collectionGrid">
+
+          <a href="#contact" class="collection-card reveal">
+
+            <img
+              src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1200&q=85"
+              alt="Gold necklace"
+            >
+
+            <div class="collection-overlay">
+              <h3>Necklaces</h3>
+              <p>Elegant pieces for every occasion</p>
+            </div>
+
+          </a>
+
+
+          <a href="#contact" class="collection-card reveal">
+
+            <img
+              src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=1200&q=85"
+              alt="Gold rings"
+            >
+
+            <div class="collection-overlay">
+              <h3>Rings</h3>
+              <p>Symbols of moments that matter</p>
+            </div>
+
+          </a>
+
+
+          <a href="#contact" class="collection-card reveal">
+
+            <img
+              src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=1200&q=85"
+              alt="Gold jewellery"
+            >
+
+            <div class="collection-overlay">
+              <h3>Bangles</h3>
+              <p>Traditional craft, modern elegance</p>
+            </div>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         STORY
+    ========================== -->
+
+    <section class="story" id="story">
+
+      <div class="container story-grid">
+
+        <div class="story-image reveal">
+
+          <img
+            src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=1200&q=85"
+            alt="Goldsmith working on jewellery"
+          >
+
+        </div>
+
+
+        <div class="story-text reveal">
+
+          <div class="section-header">
+
+            <div class="eyebrow">
+              Our Story
+            </div>
+
+            <h2 class="section-title">
+              The art of <span>goldsmithing.</span>
+            </h2>
+
+          </div>
+
+          <p>
+            Every piece begins with a simple idea — that jewellery
+            should mean something.
+          </p>
+
+          <p>
+            For decades, our workshop has combined traditional
+            goldsmithing techniques with modern design to create
+            jewellery that feels personal, timeless and unmistakably
+            yours.
+          </p>
+
+          <p>
+            From melting and shaping the gold to the final polish,
+            every detail is handled with care by skilled craftsmen.
+          </p>
+
+          <div class="signature">
+            — Geetha Gold Works
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SERVICES
+    ========================== -->
+
+    <section class="services" id="services">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="eyebrow">
+            What We Do
+          </div>
+
+          <h2 class="section-title">
+            More than <span>jewellery.</span>
+          </h2>
+
+          <p class="section-description">
+            From your first idea to the final polish, we're here
+            to bring your vision to life.
+          </p>
+
+        </div>
+
+
+        <div class="service-grid">
+
+          <div class="service reveal">
+            <div class="service-number">01</div>
+            <h3>Custom Jewellery</h3>
+            <p>
+              Turn your idea, sketch or inspiration into a
+              one-of-a-kind piece.
+            </p>
+          </div>
+
+          <div class="service reveal">
+            <div class="service-number">02</div>
+            <h3>Gold Repair</h3>
+            <p>
+              Professional repair and restoration for treasured
+              jewellery.
+            </p>
+          </div>
+
+          <div class="service reveal">
+            <div class="service-number">03</div>
+            <h3>Resizing</h3>
+            <p>
+              Precise ring and jewellery resizing with careful
+              finishing.
+            </p>
+          </div>
+
+          <div class="service reveal">
+            <div class="service-number">04</div>
+            <h3>Polishing</h3>
+            <p>
+              Restore the shine and beauty of your favourite
+              gold jewellery.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CUSTOM DESIGN
+    ========================== -->
+
+    <section class="custom">
+
+      <div class="container">
+
+        <div class="custom-content reveal">
+
+          <div class="eyebrow">
+            Create Something Personal
+          </div>
+
+          <h2 class="section-title">
+            Your idea.<br>
+            Our <span>craft.</span>
+          </h2>
+
+          <p class="section-description">
+            Have a design in mind? Bring us a photograph, sketch,
+            reference or simply an idea. We'll help turn it into
+            jewellery made specifically for you.
+          </p>
+
+          <br>
+
+          <a href="#contact" class="btn btn-primary">
+            Start Your Design
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         TESTIMONIALS
+    ========================== -->
+
+    <section class="testimonials">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="eyebrow">
+            Client Stories
+          </div>
+
+          <h2 class="section-title">
+            Worn with <span>meaning.</span>
+          </h2>
+
+        </div>
+
+
+        <div class="testimonial-grid">
+
+          <div class="testimonial reveal">
+
+            <div class="stars">
+              ★★★★★
+            </div>
+
+            <p>
+              "They transformed my grandmother's old gold into
+              a beautiful new necklace. It means so much to me."
+            </p>
+
+            <strong>— Priya</strong>
+
+          </div>
+
+
+          <div class="testimonial reveal">
+
+            <div class="stars">
+              ★★★★★
+            </div>
+
+            <p>
+              "The craftsmanship is exceptional. You can genuinely
+              see the care that goes into every detail."
+            </p>
+
+            <strong>— Arjun</strong>
+
+          </div>
+
+
+          <div class="testimonial reveal">
+
+            <div class="stars">
+              ★★★★★
+            </div>
+
+            <p>
+              "I showed them a simple reference picture and they
+              created exactly what I imagined."
+            </p>
+
+            <strong>— Meera</strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section class="contact" id="contact">
+
+      <div class="container contact-grid">
+
+        <div class="reveal">
+
+          <div class="eyebrow">
+            Visit the Workshop
+          </div>
+
+          <h2 class="section-title">
+            Let's create something <span>beautiful.</span>
+          </h2>
+
+          <p class="section-description">
+            Have a question, want a custom design, or need a
+            jewellery repair? Send us a message.
+          </p>
+
+
+          <div class="contact-details">
+
+            <div class="contact-item">
+              <small>Phone</small>
+              <a href="tel:+919999999999">
+                +91 99999 99999
+              </a>
+            </div>
+
+            <div class="contact-item">
+              <small>WhatsApp</small>
+              <a
+                href="https://wa.me/919999999999"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Chat with us
+              </a>
+            </div>
+
+            <div class="contact-item">
+              <small>Workshop</small>
+              <p>
+                123 Main Street<br>
+                Your City, India
+              </p>
+            </div>
+
+            <div class="contact-item">
+              <small>Opening Hours</small>
+              <p>
+                Monday – Saturday<br>
+                10:00 AM – 8:00 PM
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="reveal">
+
+          <form id="contactForm">
+
+            <input
+              type="text"
+              id="name"
+              placeholder="Your Name"
+              required
+            >
+
+            <input
+              type="tel"
+              id="phone"
+              placeholder="Phone Number"
+              required
+            >
+
+            <input
+              type="email"
+              id="email"
+              placeholder="Email Address"
+            >
+
+            <textarea
+              id="message"
+              placeholder="Tell us what you're looking for..."
+              required
+            ></textarea>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              Send Enquiry
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <p>
+        © 2026 Geetha Gold Works. All rights reserved.
+      </p>
+
+      <div class="footer-links">
+        <a href="#home">Instagram</a>
+        <a href="#contact">WhatsApp</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       WHATSAPP BUTTON
+  ========================== -->
+
+  <a
+    class="whatsapp"
+    href="https://wa.me/919999999999?text=Hello%20Geetha%20Gold%20Works,%20I%20would%20like%20to%20make%20an%20enquiry."
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp"
+  >
+    W
+  </a>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    /* Navbar */
+
+    const header = document.getElementById("header");
+
+    window.addEventListener("scroll", () => {
+
+      if (window.scrollY > 40) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+
+    });
+
+
+    /* Mobile menu */
+
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+
+    menuButton.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+
+    /* Close mobile menu */
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+
+    });
+
+
+    /* Scroll reveal */
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+    revealElements.forEach(element => {
+      observer.observe(element);
+    });
+
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+
+    async function loadCatalogues() {
+      try {
+        const [foldersRes, itemsRes] = await Promise.all([
+          fetch("/api/folders"),
+          fetch("/api/catalogues")
+        ]);
+        const folders = await foldersRes.json();
+        const items = await itemsRes.json();
+        const grid = document.getElementById("collectionGrid");
+        const toolbar = document.getElementById("folderToolbar");
+        const heading = document.getElementById("folderHeading");
+
+        if (!Array.isArray(folders) || !folders.length) {
+          toolbar.classList.remove("visible");
+          if (Array.isArray(items) && items.length) {
+            grid.innerHTML = items.map((item) => pieceCard(item)).join("");
+          }
+          return;
+        }
+
+        toolbar.classList.remove("visible");
+        heading.textContent = "";
+        grid.innerHTML = folders.map((folder) => {
+          const cover = folder.image || "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1200&q=85";
+          const count = folder.count || 0;
+          return `
+            <button type="button" class="collection-card reveal visible" data-folder-id="${folder.id}" data-folder-name="${escapeHtml(folder.name)}">
+              <img src="${cover}" alt="${escapeHtml(folder.name)}">
+              <div class="collection-overlay">
+                <h3>${escapeHtml(folder.name)}</h3>
+                <p>${escapeHtml(folder.description || (count + " pieces"))}</p>
+              </div>
+            </button>
+          `;
+        }).join("");
+        grid.querySelectorAll("[data-folder-id]").forEach((card) => {
+          card.addEventListener("click", () => openFolder(card.dataset.folderId, card.dataset.folderName));
+        });
+      } catch (error) {
+        console.error("Could not load catalogues", error);
+      }
+    }
+
+    function pieceCard(item) {
+      return `
+        <a href="#contact" class="collection-card reveal visible">
+          <img src="${item.image}" alt="${escapeHtml(item.title)}">
+          <div class="collection-overlay">
+            <h3>${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.description || "")}</p>
+          </div>
+        </a>
+      `;
+    }
+
+    async function openFolder(folderId, folderName) {
+      const grid = document.getElementById("collectionGrid");
+      const toolbar = document.getElementById("folderToolbar");
+      const heading = document.getElementById("folderHeading");
+      const response = await fetch(`/api/catalogues?folder_id=${folderId}`);
+      const items = await response.json();
+      toolbar.classList.add("visible");
+      heading.textContent = folderName;
+      if (!items.length) {
+        grid.innerHTML = "<p class='section-description'>No pieces in this folder yet.</p>";
+        return;
+      }
+      grid.innerHTML = items.map((item) => pieceCard(item)).join("");
+      document.getElementById("collections").scrollIntoView({ behavior: "smooth" });
+    }
+
+    document.getElementById("folderBack").addEventListener("click", loadCatalogues);
+
+    loadCatalogues();
+
+
+    /* Contact form */
+
+    const form = document.getElementById("contactForm");
+
+    form.addEventListener("submit", async (event) => {
+
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+
+      try {
+        await fetch("/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, phone, email, message })
+        });
+      } catch (error) {
+        console.error("Could not save order", error);
+      }
+
+      const whatsappNumber = "919999999999";
+
+      const text =
+        `Hello Geetha Gold Works,
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+
+Enquiry:
+${message}`;
+
+      const whatsappURL =
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+
+      window.open(whatsappURL, "_blank");
+      form.reset();
+
+    });
+
+  </script>
+
+</body>
+</html>

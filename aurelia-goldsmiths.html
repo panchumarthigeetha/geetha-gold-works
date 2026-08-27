@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aurelia Goldsmiths | Designs & Custom Orders</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --gold:#c7a15a;
+    --gold-light:#e3c47c;
+    --cream:#f6f1e7;
+    --dark:#11100e;
+    --dark-2:#1a1815;
+    --dark-3:#221f1a;
+    --text:#eee9df;
+    --muted:#aaa49a;
+    --border:rgba(255,255,255,0.1);
+    --danger:#c96a4f;
+    --max:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--dark);
+    color:var(--text);
+    font-family:"Inter",sans-serif;
+    line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  input,textarea,select{font-family:inherit;}
+  .container{width:min(var(--max), calc(100% - 40px));margin:auto;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;left:0;width:100%;z-index:1000;
+    background:rgba(17,16,14,0.92);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{height:72px;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:"Cormorant Garamond",serif;font-size:27px;font-weight:600;letter-spacing:1px;}
+  .logo span{color:var(--gold);}
+  .tabs{display:flex;gap:6px;background:var(--dark-3);padding:5px;border-radius:999px;}
+  .tab-btn{
+    padding:9px 18px;border:none;background:transparent;color:var(--muted);
+    font-size:12.5px;letter-spacing:0.5px;border-radius:999px;transition:0.25s;
+  }
+  .tab-btn.active{background:var(--gold);color:#16130e;font-weight:600;}
+  .tab-btn:hover:not(.active){color:var(--text);}
+
+  main{min-height:70vh;padding:60px 0 100px;}
+  .hidden{display:none !important;}
+
+  .eyebrow{color:var(--gold-light);text-transform:uppercase;letter-spacing:3px;font-size:11px;margin-bottom:14px;font-weight:600;}
+  .page-title{font-family:"Cormorant Garamond",serif;font-size:clamp(36px,5vw,54px);font-weight:500;line-height:1;margin-bottom:14px;}
+  .page-title span{color:var(--gold-light);font-style:italic;}
+  .page-sub{color:var(--muted);font-size:14.5px;max-width:520px;margin-bottom:44px;}
+
+  /* GALLERY */
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;}
+  .design-card{
+    background:var(--dark-2);border:1px solid var(--border);border-radius:4px;
+    overflow:hidden;display:flex;flex-direction:column;transition:0.3s;
+  }
+  .design-card:hover{border-color:rgba(199,161,90,0.5);transform:translateY(-3px);}
+  .emblem{
+    height:170px;display:flex;align-items:center;justify-content:center;
+    font-family:"Cormorant Garamond",serif;font-style:italic;font-size:56px;color:rgba(255,255,255,0.92);
+    position:relative;overflow:hidden;
+  }
+  .emblem::after{
+    content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 22px);
+  }
+  .card-body{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1;}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .card-top h3{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:500;}
+  .card-tag{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(199,161,90,0.4);padding:3px 8px;border-radius:999px;white-space:nowrap;}
+  .card-desc{color:var(--muted);font-size:13px;flex:1;}
+  .card-price{color:var(--gold-light);font-size:14px;font-weight:500;}
+  .card-actions{display:flex;gap:8px;margin-top:6px;}
+  .empty-state{
+    grid-column:1/-1;text-align:center;padding:70px 20px;color:var(--muted);
+    border:1px dashed var(--border);border-radius:4px;
+  }
+  .empty-state h3{font-family:"Cormorant Garamond",serif;font-size:26px;color:var(--text);margin-bottom:8px;font-weight:500;}
+
+  /* BUTTONS */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    padding:12px 22px;border:1px solid var(--gold);font-size:12px;letter-spacing:0.8px;
+    text-transform:uppercase;transition:0.25s;background:transparent;color:var(--text);border-radius:2px;
+  }
+  .btn-primary{background:var(--gold);color:#16130e;border-color:var(--gold);}
+  .btn-primary:hover{background:var(--gold-light);border-color:var(--gold-light);}
+  .btn-outline:hover{background:rgba(255,255,255,0.06);}
+  .btn-sm{padding:9px 14px;font-size:11px;flex:1;}
+  .btn-danger{border-color:var(--danger);color:var(--danger);}
+  .btn-danger:hover{background:rgba(201,106,79,0.12);}
+  .btn:disabled{opacity:0.5;cursor:not-allowed;}
+
+  /* FORMS */
+  .form-card{background:var(--dark-2);border:1px solid var(--border);padding:36px;border-radius:4px;max-width:560px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--gold-light);margin-bottom:8px;}
+  .field input,.field textarea,.field select{
+    width:100%;background:var(--dark);border:1px solid var(--border);color:var(--text);
+    padding:13px 14px;outline:none;border-radius:2px;transition:0.2s;font-size:14px;
+  }
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold);}
+  .field textarea{min-height:110px;resize:vertical;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .field-hint{color:var(--muted);font-size:11.5px;margin-top:6px;}
+
+  /* TRACK / RESULT */
+  .track-form{display:flex;gap:12px;flex-wrap:wrap;max-width:560px;}
+  .track-form input{flex:1;min-width:180px;}
+  .order-result{
+    margin-top:40px;max-width:640px;background:var(--dark-2);border:1px solid var(--border);
+    border-radius:4px;padding:34px;
+  }
+  .order-result h3{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:500;margin-bottom:4px;}
+  .order-meta{color:var(--muted);font-size:12.5px;margin-bottom:30px;}
+  .order-meta b{color:var(--text);}
+
+  /* CHAIN STEPPER (signature element) */
+  .chain-stepper{display:flex;align-items:flex-start;margin:30px 0 10px;}
+  .chain-step{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;}
+  .chain-link{
+    width:34px;height:34px;border-radius:50%;border:2px solid var(--border);
+    display:flex;align-items:center;justify-content:center;background:var(--dark);
+    transition:0.4s;z-index:2;flex-shrink:0;
+  }
+  .chain-link.done{border-color:var(--gold);background:var(--gold);box-shadow:0 0 0 4px rgba(199,161,90,0.18);}
+  .chain-link.current{border-color:var(--gold-light);background:var(--dark);box-shadow:0 0 0 5px rgba(227,196,124,0.22);animation:pulse 1.8s infinite;}
+  .chain-link svg{width:16px;height:16px;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 5px rgba(227,196,124,0.22);}50%{box-shadow:0 0 0 9px rgba(227,196,124,0.08);}}
+  .chain-bar{position:absolute;top:17px;left:50%;width:100%;height:2px;background:var(--border);z-index:1;}
+  .chain-bar.done{background:var(--gold);}
+  .chain-step:last-child .chain-bar{display:none;}
+  .chain-label{margin-top:12px;font-size:11px;text-align:center;color:var(--muted);letter-spacing:0.3px;line-height:1.3;max-width:90px;}
+  .chain-step.done .chain-label,.chain-step.current .chain-label{color:var(--text);}
+  .order-note{margin-top:26px;padding:16px 18px;background:var(--dark);border-left:2px solid var(--gold);font-size:13px;color:var(--muted);}
+  .not-found{color:var(--danger);font-size:13.5px;margin-top:16px;}
+
+  /* MODAL */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(10,9,7,0.75);backdrop-filter:blur(4px);
+    display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;
+  }
+  .modal{background:var(--dark-2);border:1px solid var(--border);border-radius:4px;max-width:460px;width:100%;padding:34px;position:relative;}
+  .modal h3{font-family:"Cormorant Garamond",serif;font-size:26px;margin-bottom:6px;font-weight:500;}
+  .modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--muted);font-size:20px;}
+  .id-display{
+    background:var(--dark);border:1px dashed var(--gold);padding:16px;text-align:center;
+    font-family:"Cormorant Garamond",serif;font-size:24px;color:var(--gold-light);letter-spacing:2px;margin:18px 0;border-radius:2px;
+  }
+
+  /* ADMIN */
+  .admin-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;flex-wrap:wrap;gap:14px;}
+  .admin-tabs{display:flex;gap:8px;}
+  .admin-tab{padding:8px 16px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;border-radius:2px;}
+  .admin-tab.active{border-color:var(--gold);color:var(--gold-light);}
+  .order-row{
+    display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr auto;gap:14px;align-items:center;
+    padding:16px 18px;background:var(--dark-2);border:1px solid var(--border);border-radius:3px;margin-bottom:10px;font-size:13px;
+  }
+  .order-row .oid{color:var(--gold-light);font-weight:600;font-family:"Cormorant Garamond",serif;font-size:16px;}
+  .order-row select{background:var(--dark);color:var(--text);border:1px solid var(--border);padding:7px 8px;border-radius:2px;font-size:12px;}
+  .muted-small{color:var(--muted);font-size:11.5px;}
+
+  footer{border-top:1px solid var(--border);padding:30px 0;text-align:center;}
+  .footer-links{color:var(--muted);font-size:11.5px;}
+  .footer-links button{background:none;border:none;color:var(--muted);font-size:11.5px;text-decoration:underline;text-underline-offset:3px;}
+  .footer-links button:hover{color:var(--gold-light);}
+
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+    background:var(--gold);color:#16130e;padding:13px 24px;border-radius:3px;font-size:13px;font-weight:500;
+    z-index:3000;opacity:0;transition:0.3s;pointer-events:none;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,-8px);}
+
+  @media (max-width:760px){
+    .nav{height:auto;padding:14px 0;flex-direction:column;gap:14px;}
+    .tabs{width:100%;overflow-x:auto;}
+    .field-row{grid-template-columns:1fr;}
+    .order-row{grid-template-columns:1fr;text-align:left;}
+    .chain-label{max-width:70px;font-size:10px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">Aurelia<span>.</span></a>
+    <div class="tabs">
+      <button class="tab-btn" data-tab="gallery">Gallery</button>
+      <button class="tab-btn" data-tab="custom">Custom Design</button>
+      <button class="tab-btn" data-tab="track">Track Order</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <!-- GALLERY -->
+    <section id="page-gallery">
+      <div class="eyebrow">Our Collection</div>
+      <h1 class="page-title">Designs, <span>ready to enquire.</span></h1>
+      <p class="page-sub">Browse pieces from the workshop. Tap "Enquire" on anything you'd like — we'll turn it into an order you can track.</p>
+      <div id="galleryGrid" class="gallery-grid"></div>
+    </section>
+
+    <!-- CUSTOM DESIGN -->
+    <section id="page-custom" class="hidden">
+      <div class="eyebrow">Bring Your Idea</div>
+      <h1 class="page-title">Your idea. <span>Our craft.</span></h1>
+      <p class="page-sub">Describe what you have in mind — a sketch, a reference, an heirloom to reimagine. We'll get back to you, and you'll get an order ID to track progress.</p>
+      <form id="customForm" class="form-card">
+        <div class="field-row">
+          <div class="field"><label>Your Name</label><input type="text" id="cf-name" required></div>
+          <div class="field"><label>Phone Number</label><input type="tel" id="cf-phone" required></div>
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <select id="cf-category">
+            <option>Necklace</option><option>Ring</option><option>Bangle</option>
+            <option>Earrings</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Describe your design</label>
+          <textarea id="cf-desc" placeholder="Materials, style, occasion, any reference details..." required></textarea>
+        </div>
+        <div class="field">
+          <label>Budget (optional)</label>
+          <input type="text" id="cf-budget" placeholder="e.g. ₹40,000 – ₹60,000">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;padding:15px;">Submit Request</button>
+      </form>
+    </section>
+
+    <!-- TRACK ORDER -->
+    <section id="page-track" class="hidden">
+      <div class="eyebrow">Order Status</div>
+      <h1 class="page-title">Track your <span>order.</span></h1>
+      <p class="page-sub">Enter the Order ID you received and the phone number used when submitting.</p>
+      <form id="trackForm" class="track-form">
+        <input type="text" id="tf-id" placeholder="Order ID (e.g. AUR-4K2P)" required>
+        <input type="tel" id="tf-phone" placeholder="Phone Number" required>
+        <button type="submit" class="btn btn-primary">Track</button>
+      </form>
+      <div id="trackResult"></div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    © 2026 Aurelia Goldsmiths &nbsp;·&nbsp; <button id="studioLoginBtn">Studio Login</button>
+  </div>
+</footer>
+
+<!-- Enquire modal -->
+<div id="enquireModal" class="modal-overlay hidden">
+  <div class="modal">
+    <button class="modal-close" data-close="enquireModal">✕</button>
+    <h3>Enquire</h3>
+    <p class="muted-small" id="enquireDesignName" style="margin-bottom:18px;"></p>
+    <form id="enquireForm">
+      <div class="field"><label>Your Name</label><input type="text" id="ef-name" required></div>
+      <div class="field"><label>Phone Number</label><input type="tel" id="ef-phone" required></div>
+      <div class="field"><label>Notes (optional)</label><textarea id="ef-notes" placeholder="Size, engraving, questions..."></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;padding:14px;">Send Enquiry</button>
+    </form>
+  </div>
+</div>
+
+<!-- Order confirmation modal -->
+<div id="confirmModal" class="modal-overlay hidden">
+  <div class="modal">
+    <button class="modal-close" data-close="confirmModal">✕</button>
+    <h3>Request received</h3>
+    <p class="muted-small">Save this Order ID — you'll need it, with your phone number, to track progress.</p>
+    <div class="id-display" id="confirmOrderId"></div>
+    <button class="btn btn-primary" style="width:100%;padding:13px;" data-close="confirmModal">Done</button>
+  </div>
+</div>
+
+<!-- Admin login modal -->
+<div id="loginModal" class="modal-overlay hidden">
+  <div class="modal">
+    <button class="modal-close" data-close="loginModal">✕</button>
+    <h3>Studio Login</h3>
+    <p class="muted-small" style="margin-bottom:18px;">For the Aurelia team only.</p>
+    <div class="field"><label>Passcode</label><input type="password" id="adminPasscode"></div>
+    <p id="loginError" class="not-found hidden">Incorrect passcode.</p>
+    <button class="btn btn-primary" id="adminLoginSubmit" style="width:100%;padding:13px;margin-top:6px;">Enter</button>
+  </div>
+</div>
+
+<!-- Admin panel -->
+<div id="adminModal" class="modal-overlay hidden">
+  <div class="modal" style="max-width:920px;max-height:85vh;overflow-y:auto;">
+    <button class="modal-close" data-close="adminModal">✕</button>
+    <h3 style="margin-bottom:20px;">Studio Panel</h3>
+    <div class="admin-bar">
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-admintab="orders">Orders</button>
+        <button class="admin-tab" data-admintab="designs">Designs</button>
+      </div>
+      <button class="btn btn-outline btn-sm" id="adminLogoutBtn" style="flex:none;">Log Out</button>
+    </div>
+
+    <div id="admin-orders">
+      <div id="adminOrdersList"></div>
+    </div>
+
+    <div id="admin-designs" class="hidden">
+      <form id="designForm" class="form-card" style="max-width:100%;margin-bottom:26px;">
+        <div class="field-row">
+          <div class="field"><label>Design Name</label><input type="text" id="df-name" required></div>
+          <div class="field">
+            <label>Category</label>
+            <select id="df-category">
+              <option>Necklace</option><option>Ring</option><option>Bangle</option><option>Earrings</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Price (optional)</label><input type="text" id="df-price" placeholder="e.g. ₹28,000"></div>
+          <div class="field"><label>Monogram Letter</label><input type="text" id="df-letter" maxlength="2" placeholder="e.g. A"></div>
+        </div>
+        <div class="field"><label>Short Description</label><textarea id="df-desc" required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;padding:13px;">Add to Gallery</button>
+      </form>
+      <div id="adminDesignsList" class="gallery-grid"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+/* ========= CONFIG ========= */
+const ADMIN_PASSCODE = "AURELIA2026";
+const STATUS_STEPS = ["Request Received","Design Confirmed","In the Workshop","Polishing & Finishing","Ready for Pickup"];
+const CATEGORY_HUES = { Necklace:"linear-gradient(135deg,#3a2f1e,#5c4a26)", Ring:"linear-gradient(135deg,#2e2a22,#6b5530)",
+  Bangle:"linear-gradient(135deg,#332a1c,#4d3d22)", Earrings:"linear-gradient(135deg,#2b241a,#59462a)", Other:"linear-gradient(135deg,#2a2620,#4a4030)" };
+
+let state = { designs: [], orders: [], adminMode: false, enquireDesign: null };
+
+/* ========= STORAGE HELPERS ========= */
+async function safeGet(key, shared){
+  try{ const r = await window.storage.get(key, shared); return r ? r.value : null; }catch(e){ return null; }
+}
+async function safeSet(key, value, shared){
+  try{ const r = await window.storage.set(key, value, shared); return !!r; }catch(e){ return false; }
+}
+
+async function loadDesigns(){
+  const idxRaw = await safeGet('designs:index', true);
+  const ids = idxRaw ? JSON.parse(idxRaw) : [];
+  const designs = [];
+  for(const id of ids){
+    const raw = await safeGet('designs:'+id, true);
+    if(raw) designs.push(JSON.parse(raw));
+  }
+  state.designs = designs.sort((a,b)=> b.createdAt - a.createdAt);
+  renderGallery();
+  renderAdminDesigns();
+}
+
+async function loadOrders(){
+  const idxRaw = await safeGet('orders:index', true);
+  const ids = idxRaw ? JSON.parse(idxRaw) : [];
+  const orders = [];
+  for(const id of ids){
+    const raw = await safeGet('orders:'+id, true);
+    if(raw) orders.push(JSON.parse(raw));
+  }
+  state.orders = orders.sort((a,b)=> b.createdAt - a.createdAt);
+  renderAdminOrders();
+}
+
+function genId(prefix, existingIds){
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let id;
+  do{
+    id = prefix + "-" + Array.from({length:4},()=>chars[Math.floor(Math.random()*chars.length)]).join("");
+  }while(existingIds.includes(id));
+  return id;
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=> t.classList.remove('show'), 2600);
+}
+
+/* ========= TABS ========= */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=> switchTab(btn.dataset.tab));
+});
+function switchTab(tab){
+  document.querySelectorAll('.tab-btn').forEach(b=> b.classList.toggle('active', b.dataset.tab===tab));
+  ['gallery','custom','track'].forEach(t=>{
+    document.getElementById('page-'+t).classList.toggle('hidden', t!==tab);
+  });
+}
+switchTab('gallery');
+
+/* ========= GALLERY RENDER ========= */
+function emblemLetter(design){
+  return design.letter && design.letter.trim() ? design.letter.trim().toUpperCase().slice(0,2) : design.name.trim().charAt(0).toUpperCase();
+}
+function renderGallery(){
+  const grid = document.getElementById('galleryGrid');
+  if(state.designs.length === 0){
+    grid.innerHTML = `<div class="empty-state"><h3>The gallery is being curated</h3><p>New designs will appear here shortly. Check back soon, or submit a custom request.</p></div>`;
+    return;
+  }
+  grid.innerHTML = state.designs.map(d => `
+    <div class="design-card">
+      <div class="emblem" style="background:${CATEGORY_HUES[d.category]||CATEGORY_HUES.Other}">${emblemLetter(d)}</div>
+      <div class="card-body">
+        <div class="card-top"><h3>${escapeHtml(d.name)}</h3><span class="card-tag">${escapeHtml(d.category)}</span></div>
+        <p class="card-desc">${escapeHtml(d.description)}</p>
+        ${d.price ? `<div class="card-price">${escapeHtml(d.price)}</div>` : ''}
+        <div class="card-actions"><button class="btn btn-primary btn-sm" onclick="openEnquire('${d.id}')">Enquire</button></div>
+      </div>
+    </div>
+  `).join('');
+}
+function escapeHtml(str){
+  const div = document.createElement('div'); div.textContent = str ?? ''; return div.innerHTML;
+}
+
+/* ========= ENQUIRE MODAL ========= */
+function openEnquire(designId){
+  const d = state.designs.find(x=>x.id===designId);
+  if(!d) return;
+  state.enquireDesign = d;
+  document.getElementById('enquireDesignName').textContent = `Regarding: ${d.name} (${d.category})`;
+  openModal('enquireModal');
+}
+document.getElementById('enquireForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const name = document.getElementById('ef-name').value.trim();
+  const phone = document.getElementById('ef-phone').value.trim();
+  const notes = document.getElementById('ef-notes').value.trim();
+  const d = state.enquireDesign;
+  await createOrder({
+    type:'catalog', name, phone, category:d.category,
+    description: `Enquiry about "${d.name}". ${notes ? 'Notes: '+notes : ''}`,
+    budget:'', designName:d.name
+  });
+  e.target.reset();
+  closeModal('enquireModal');
+});
+
+/* ========= CUSTOM FORM ========= */
+document.getElementById('customForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const name = document.getElementById('cf-name').value.trim();
+  const phone = document.getElementById('cf-phone').value.trim();
+  const category = document.getElementById('cf-category').value;
+  const description = document.getElementById('cf-desc').value.trim();
+  const budget = document.getElementById('cf-budget').value.trim();
+  await createOrder({ type:'custom', name, phone, category, description, budget, designName:'' });
+  e.target.reset();
+});
+
+async function createOrder(data){
+  const existingIds = state.orders.map(o=>o.id);
+  const id = genId('AUR', existingIds);
+  const order = {
+    id, ...data, status: STATUS_STEPS[0], createdAt: Date.now()
+  };
+  const ok = await safeSet('orders:'+id, JSON.stringify(order), true);
+  if(!ok){ showToast("Something went wrong — please try again."); return; }
+  const idxRaw = await safeGet('orders:index', true);
+  const ids = idxRaw ? JSON.parse(idxRaw) : [];
+  ids.push(id);
+  await safeSet('orders:index', JSON.stringify(ids), true);
+  state.orders.unshift(order);
+  document.getElementById('confirmOrderId').textContent = id;
+  openModal('confirmModal');
+  renderAdminOrders();
+}
+
+/* ========= TRACK ORDER ========= */
+document.getElementById('trackForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const id = document.getElementById('tf-id').value.trim().toUpperCase();
+  const phone = document.getElementById('tf-phone').value.trim();
+  const resultBox = document.getElementById('trackResult');
+  resultBox.innerHTML = `<p class="muted-small" style="margin-top:20px;">Looking up your order...</p>`;
+
+  const raw = await safeGet('orders:'+id, true);
+  if(!raw){
+    resultBox.innerHTML = `<p class="not-found">No order found with that ID. Double-check it and try again.</p>`;
+    return;
+  }
+  const order = JSON.parse(raw);
+  if(order.phone.replace(/\s+/g,'') !== phone.replace(/\s+/g,'')){
+    resultBox.innerHTML = `<p class="not-found">That phone number doesn't match this order.</p>`;
+    return;
+  }
+  resultBox.innerHTML = renderOrderCard(order);
+});
+
+function renderOrderCard(order){
+  const currentIdx = STATUS_STEPS.indexOf(order.status);
+  const steps = STATUS_STEPS.map((label, i)=>{
+    let cls = '';
+    if(i < currentIdx) cls = 'done';
+    else if(i === currentIdx) cls = 'current';
+    const barCls = i < currentIdx ? 'done' : '';
+    const icon = i < currentIdx
+      ? `<svg viewBox="0 0 24 24" fill="none" stroke="#16130e" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>`
+      : '';
+    return `<div class="chain-step ${cls}">
+        <div class="chain-link ${cls}">${icon}</div>
+        <div class="chain-bar ${barCls}"></div>
+        <div class="chain-label">${label}</div>
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="order-result">
+      <h3>${order.designName ? escapeHtml(order.designName) : escapeHtml(order.category)+' — Custom Request'}</h3>
+      <div class="order-meta"><b>${escapeHtml(order.id)}</b> &nbsp;·&nbsp; ${escapeHtml(order.category)} &nbsp;·&nbsp; submitted ${new Date(order.createdAt).toLocaleDateString()}</div>
+      <div class="chain-stepper">${steps}</div>
+      <div class="order-note">${escapeHtml(order.description)}${order.budget ? '<br><br><b>Budget:</b> '+escapeHtml(order.budget) : ''}</div>
+    </div>
+  `;
+}
+
+/* ========= MODAL HELPERS ========= */
+function openModal(id){ document.getElementById(id).classList.remove('hidden'); }
+function closeModal(id){ document.getElementById(id).classList.add('hidden'); }
+document.querySelectorAll('[data-close]').forEach(el=>{
+  el.addEventListener('click', ()=> closeModal(el.dataset.close));
+});
+document.querySelectorAll('.modal-overlay').forEach(ov=>{
+  ov.addEventListener('click', (e)=>{ if(e.target===ov) ov.classList.add('hidden'); });
+});
+
+/* ========= ADMIN ========= */
+document.getElementById('studioLoginBtn').addEventListener('click', ()=>{
+  if(state.adminMode){ openModal('adminModal'); }
+  else{ openModal('loginModal'); }
+});
+document.getElementById('adminLoginSubmit').addEventListener('click', ()=>{
+  const val = document.getElementById('adminPasscode').value;
+  if(val === ADMIN_PASSCODE){
+    state.adminMode = true;
+    document.getElementById('loginError').classList.add('hidden');
+    document.getElementById('adminPasscode').value = '';
+    closeModal('loginModal');
+    openModal('adminModal');
+    renderAdminOrders();
+    renderAdminDesigns();
+  } else {
+    document.getElementById('loginError').classList.remove('hidden');
+  }
+});
+document.getElementById('adminLogoutBtn').addEventListener('click', ()=>{
+  state.adminMode = false;
+  closeModal('adminModal');
+});
+document.querySelectorAll('.admin-tab').forEach(t=>{
+  t.addEventListener('click', ()=>{
+    document.querySelectorAll('.admin-tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('admin-orders').classList.toggle('hidden', t.dataset.admintab!=='orders');
+    document.getElementById('admin-designs').classList.toggle('hidden', t.dataset.admintab!=='designs');
+  });
+});
+
+function renderAdminOrders(){
+  const box = document.getElementById('adminOrdersList');
+  if(!box) return;
+  if(state.orders.length===0){
+    box.innerHTML = `<p class="muted-small">No orders yet.</p>`;
+    return;
+  }
+  box.innerHTML = state.orders.map(o=>`
+    <div class="order-row">
+      <div><div class="oid">${o.id}</div><div class="muted-small">${escapeHtml(o.name)} · ${escapeHtml(o.phone)}</div></div>
+      <div class="muted-small">${escapeHtml(o.category)}${o.designName ? ' · '+escapeHtml(o.designName) : ' · custom'}</div>
+      <div class="muted-small">${new Date(o.createdAt).toLocaleDateString()}</div>
+      <select onchange="updateOrderStatus('${o.id}', this.value)">
+        ${STATUS_STEPS.map(s=>`<option value="${s}" ${s===o.status?'selected':''}>${s}</option>`).join('')}
+      </select>
+      <span></span>
+    </div>
+  `).join('');
+}
+
+async function updateOrderStatus(id, newStatus){
+  const order = state.orders.find(o=>o.id===id);
+  if(!order) return;
+  order.status = newStatus;
+  await safeSet('orders:'+id, JSON.stringify(order), true);
+  showToast(`${id} marked "${newStatus}"`);
+}
+
+document.getElementById('designForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const name = document.getElementById('df-name').value.trim();
+  const category = document.getElementById('df-category').value;
+  const price = document.getElementById('df-price').value.trim();
+  const letter = document.getElementById('df-letter').value.trim();
+  const description = document.getElementById('df-desc').value.trim();
+  const existingIds = state.designs.map(d=>d.id);
+  const id = genId('DSN', existingIds);
+  const design = { id, name, category, price, letter, description, createdAt: Date.now() };
+
+  const ok = await safeSet('designs:'+id, JSON.stringify(design), true);
+  if(!ok){ showToast("Couldn't save — please try again."); return; }
+  const idxRaw = await safeGet('designs:index', true);
+  const ids = idxRaw ? JSON.parse(idxRaw) : [];
+  ids.push(id);
+  await safeSet('designs:index', JSON.stringify(ids), true);
+  state.designs.unshift(design);
+  e.target.reset();
+  renderGallery();
+  renderAdminDesigns();
+  showToast("Added to gallery");
+});
+
+function renderAdminDesigns(){
+  const box = document.getElementById('adminDesignsList');
+  if(!box) return;
+  if(state.designs.length===0){ box.innerHTML = `<p class="muted-small">No designs added yet.</p>`; return; }
+  box.innerHTML = state.designs.map(d=>`
+    <div class="design-card">
+      <div class="emblem" style="background:${CATEGORY_HUES[d.category]||CATEGORY_HUES.Other};height:110px;font-size:38px;">${emblemLetter(d)}</div>
+      <div class="card-body" style="padding:14px;">
+        <div class="card-top"><h3 style="font-size:17px;">${escapeHtml(d.name)}</h3></div>
+        <div class="card-actions"><button class="btn btn-danger btn-sm" onclick="deleteDesign('${d.id}')">Remove</button></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function deleteDesign(id){
+  try{ await window.storage.delete('designs:'+id, true); }catch(e){}
+  const idxRaw = await safeGet('designs:index', true);
+  let ids = idxRaw ? JSON.parse(idxRaw) : [];
+  ids = ids.filter(x=>x!==id);
+  await safeSet('designs:index', JSON.stringify(ids), true);
+  state.designs = state.designs.filter(d=>d.id!==id);
+  renderGallery();
+  renderAdminDesigns();
+  showToast("Design removed");
+}
+
+/* ========= INIT ========= */
+loadDesigns();
+loadOrders();
+</script>
+</body>
+</html>
