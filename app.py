@@ -4,7 +4,7 @@ import json
 import os
 import secrets
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 from functools import wraps
 
 from flask import (
@@ -24,6 +24,7 @@ CATALOGUE_FILE = os.path.join(DATA_DIR, "catalogues.json")
 FOLDERS_FILE = os.path.join(DATA_DIR, "folders.json")
 ADMIN_FILE = os.path.join(DATA_DIR, "admin.json")
 PUBLIC_URL_FILE = os.path.join(DATA_DIR, "public-url.txt")
+SECRET_FILE = os.path.join(DATA_DIR, "secret.key")
 
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "webp", "gif"}
 
@@ -43,9 +44,30 @@ for path, default in ((ORDERS_FILE, []), (CATALOGUE_FILE, []), (FOLDERS_FILE, []
         with open(path, "w", encoding="utf-8") as f:
             json.dump(default, f, indent=2)
 
+
+def get_secret_key() -> str:
+    env_key = os.environ.get("SECRET_KEY")
+    if env_key:
+        return env_key
+    if os.path.exists(SECRET_FILE):
+        with open(SECRET_FILE, encoding="utf-8") as f:
+            saved = f.read().strip()
+            if saved:
+                return saved
+    key = secrets.token_hex(32)
+    with open(SECRET_FILE, "w", encoding="utf-8") as f:
+        f.write(key)
+    return key
+
+
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY", secrets.token_hex(32))
+app.secret_key = get_secret_key()
 app.config["MAX_CONTENT_LENGTH"] = 12 * 1024 * 1024
+# Keep admin logged in indefinitely on localhost (cookie lasts ~100 years).
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=36500)
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["SESSION_REFRESH_EACH_REQUEST"] = True
 
 
 def load_json(path):
@@ -96,6 +118,7 @@ def login():
     if secrets.compare_digest(username, creds["username"]) and secrets.compare_digest(
         password, creds["password"]
     ):
+        session.permanent = True
         session["admin"] = True
         return jsonify({"ok": True})
 

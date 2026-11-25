@@ -2,6 +2,12 @@
 
 Public website for Geetha Gold Works — handcrafted gold jewellery, custom designs, repairs, and an admin panel for orders and catalogues.
 
+## Continue on another laptop
+
+1. Clone: https://github.com/panchumarthigeetha/geetha-gold-works
+2. Read **[CONTINUE-HERE.md](CONTINUE-HERE.md)** — full handoff from the Cursor chat
+3. In Cursor, say: *Read CONTINUE-HERE.md and continue from there.*
+
 ## Run locally
 
 ```bash
@@ -21,3 +27,4 @@ Default admin login (change after first run):
 
 Double-click `start-public.bat` to create a temporary public URL.
 For a permanent address, use `setup-permanent-link.bat` (free ngrok account required).
+Keep this computer on while the site is public.

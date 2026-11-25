@@ -3,6 +3,7 @@ data/admin.json
 data/orders.json
 data/public-url.txt
 data/permanent-domain.txt
+data/secret.key
 PUBLIC-LINKS.txt
 uploads/
 *.log
